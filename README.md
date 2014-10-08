@@ -31,6 +31,12 @@ The first step is to make sure that you have all of the required libraries avail
 <script src="/path/to/pusher-angular.js"></script>
 ````
 
+If you'd like you can use Bower to install pusher-angular using the following command:
+
+````bash
+bower install pusher-angular --save
+````
+
 With that in place, to start using the Angular library you first need to create a Pusher client in exactly the same way that you create one using the [pusher-js library](http://github.com/pusher/pusher-js/), which is as follows:
 
 ````javascript
@@ -64,6 +70,20 @@ To make the `$pusher` service available to be used throughout your app you need 
 ````javascript
 angular.module('myApp', ['pusher-angular'])
 ````
+
+Note that you can choose to define just one Pusher client, should you prefer, and then use that as the client throughout your Angular app. You can do this by simply instantiating a client as follows:
+
+````javascript
+window.client = new Pusher('15d9668cc510aed91e23');
+````
+
+and then instantiating instances of `$pusher` in your Angular app using the standard:
+
+````javascript
+var pusher = $pusher(client);
+````
+
+Make sure that you define client before then referencing it in your Angular app though.
 
 This is all of the setup required to have Pusher available in your Angular app. The content below will explain how you can utilise Pusher in an Angular app.
 
@@ -212,7 +232,7 @@ pusher.connection.bind_all(function (eventName, data) {
 
 If you'd like to contribute to the library then fork it, hack away at it, improve it, test it, and then make a pull request.
 
-You can make sure that you're changes / improvements don't break anything by running the unit tests. To run them just run `karma start` and then you can go ahead and make changes to the library and the tests and watch the tests run again to see if they're still passing.
+You can make sure that your changes / improvements don't break anything by running the unit tests. To run them just run `karma start` and then you can go ahead and make changes to the library and the tests and watch the tests run again to see if they're still passing.
 
 
 ## Support
