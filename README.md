@@ -238,4 +238,3 @@ You can make sure that your changes / improvements don't break anything by runni
 ## Support
 
 If you have questions that aren't answered here or in the code's inline documentation then feel free to email [hamilton@pusher.com](mailto:hamilton@pusher.com) or get in touch with [Pusher support](http://pusher.com/about/contact).
-
