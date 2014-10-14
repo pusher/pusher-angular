@@ -23,6 +23,8 @@
     "LICENSE"
   ],
   "devDependencies": {
+  },
+  "dependencies": {
     "angular": "latest",
     "angular-mocks": "latest"
   }
