@@ -39,7 +39,16 @@ module.exports = function(config) {
     reporters: ['progress', 'coverage', 'spec'],
 
     coverageReporter: {
-      type : 'text-summary'
+      reporters: [
+        {
+          type : 'text-summary'
+        },
+        {
+          type: "lcovonly",
+          dir: "coverage",
+          subdir: "."
+        }
+      ]
     },
 
 

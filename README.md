@@ -30,7 +30,7 @@ The first step is to make sure that you have all of the required libraries avail
 <script src="//js.pusher.com/2.2/pusher.min.js"></script>
 
 <!-- pusher-angular -->
-<script src="/path/to/pusher-angular.js"></script>
+<script src="//cdn.jsdelivr.net/angular.pusher/latest/pusher-angular.min.js"></script>
 ````
 
 If you'd like you can use Bower to install pusher-angular using the following command:

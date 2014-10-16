@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/pusher/pusher-angular",
   "dependencies": {
+    "coveralls": "^2.11.2",
     "istanbul": "^0.3.2",
     "karma": "^0.12.24",
     "karma-chrome-launcher": "^0.1.5",
