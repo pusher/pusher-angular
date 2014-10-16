@@ -1,6 +1,7 @@
 # Pusher Angular Library
 
 [![Build Status](https://travis-ci.org/pusher/pusher-angular.svg?branch=master)](https://travis-ci.org/pusher/pusher-angular)
+[![Coverage Status](https://img.shields.io/coveralls/pusher/pusher-angular.svg)](https://coveralls.io/r/pusher/pusher-angular?branch=master)
 
 This library is an open source client that allows you to connect to [Pusher](http://pusher.com/). It keeps largely the same API as the [pusher-js library](http://github.com/pusher/pusher-js/), with a few differences.
 
