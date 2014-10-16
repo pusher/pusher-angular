@@ -12,4 +12,5 @@ install:
 script:
   - karma start traivs_karma.conf.js
 after_script:
+  - cat ./coverage/lcov.info
   - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
