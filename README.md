@@ -25,7 +25,7 @@ The first step is to make sure that you have all of the required libraries avail
 
 ````html
 <!-- AngularJS -->
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.0/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0/angular.min.js"></script>
 
 <!-- pusher-js -->
 <script src="//js.pusher.com/2.2/pusher.min.js"></script>
@@ -123,7 +123,7 @@ var my_presence_channel = pusher.subscribe('presence-my-channel');
 It is possible to access channels by name, through the `channel` function:
 
 ````javascript
-    channel = pusher.channel('private-my-channel');
+channel = pusher.channel('private-my-channel');
 ````
 
 It is possible to access all subscribed channels through the `allChannels` function:
