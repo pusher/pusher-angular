@@ -149,7 +149,7 @@ You can attach behaviour to these events regardless of the channel the event is 
 ````javascript
 var client = new Pusher(API_KEY);
 var pusher = $pusher(client);
-var my_channel = pusher.subscribe('my-channel');
+pusher.subscribe('my-channel');
 pusher.bind('new-comment',
   function(data) {
     // add comment into page
