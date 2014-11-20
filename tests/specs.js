@@ -339,11 +339,11 @@ describe('$channel', function () {
       expect(presence.trigger).toHaveBeenCalledWith('client-test-event', payload);
     });
 
-    it('should throw an error if called on a non-presence channel', function () {
+    it('should throw an error if called on a non-presence and non-private channel', function () {
       var payload = { message: 'tigger test' };
       expect(function () {
         $c.trigger('client-test-event', payload);
-      }).toThrowError('Presence channel required');
+      }).toThrowError('Presence or private channel required');
     });
 
     it('should throw an error if event name is not correctly prefixed', function () {
