@@ -1,12 +1,8 @@
 {
   "name": "pusher-angular",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Angular library for using Pusher",
-  "main": "karma.conf.js",
-  "directories": {
-    "example": "example",
-    "test": "tests"
-  },
+  "main": "lib/pusher-angular.min.js",
   "scripts": {
     "test": "karma start traivs_karma.conf.js"
   },
@@ -25,7 +21,7 @@
     "url": "https://github.com/pusher/pusher-angular/issues"
   },
   "homepage": "https://github.com/pusher/pusher-angular",
-  "dependencies": {
+  "devDependencies": {
     "coveralls": "^2.11.2",
     "istanbul": "^0.3.2",
     "karma": "^0.12.24",
