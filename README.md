@@ -32,6 +32,10 @@ The first step is to make sure that you have all of the required libraries avail
 
 <!-- pusher-angular -->
 <script src="//cdn.jsdelivr.net/angular.pusher/latest/pusher-angular.min.js"></script>
+
+<!-- pusher-angular (backup CDN)
+<script src="//cdnjs.cloudflare.com/ajax/libs/pusher-angular/0.1.4/pusher-angular.min.js"></script>
+-->
 ````
 
 If you'd like you can use Bower to install pusher-angular using the following command:
