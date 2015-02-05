@@ -2,7 +2,7 @@
   "name": "pusher-angular",
   "version": "0.1.4",
   "description": "Angular library for using Pusher",
-  "main": "lib/pusher-angular.min.js",
+  "main": "lib/pusher-angular.js",
   "scripts": {
     "test": "karma start traivs_karma.conf.js"
   },
