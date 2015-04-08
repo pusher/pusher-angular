@@ -12,9 +12,9 @@ var pusherConfig = {};
 try {
   pusherConfig = require('./pusherConfig');
 } catch (err) {
-  pusherConfig.appId = '92326';
-  pusherConfig.key = 'c9577e11c0544b8135a5';
-  pusherConfig.secret = '4cd1cb464883c60bcb80';
+  pusherConfig.appId = 'YOUR_APP_ID';
+  pusherConfig.key = 'YOUR_APP_KEY';
+  pusherConfig.secret = 'YOUR_APP_SECRET';
 }
 
 var pusher = new Pusher(pusherConfig);

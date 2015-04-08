@@ -11,7 +11,7 @@ pCDirectives.factory('channelManager', ['$pusher', function($pusher) {
     },
     set: function (channelNum, username) {
       cNum = channelNum;
-      var client = new Pusher('c9577e11c0544b8135a5', { auth: { params: { username: username}} });
+      var client = new Pusher('YOUR_APP_KEY', { auth: { params: { username: username}} });
       var pusher = $pusher(client);
       channel = pusher.subscribe('presence-collaborate-' + channelNum);
       return channel;

@@ -1,19 +1,17 @@
 {
-  "author": "Hamilton Chapman",
-  "contributors": [
-    {
-      "name": "Hamilton Chapman",
-      "url": "https://github.com/hamchapman"
-    }
-  ],
   "name": "pusher-angular",
   "version": "0.1.0",
-  "description": "An exmaple Angular app using pusher-angular library",
-  "homepage": "http://github.com/pusher/pusher-angular/tree/example",
+  "description": "An example Angular app using pusher-angular library",
   "repository": {
     "type": "git",
-    "url": "https://github.com/doowb/angular-pusher.git"
+    "url": "https://github.com/pusher/pusher-angular.git"
   },
+  "author": "Hamilton Chapman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pusher/pusher-angular/issues"
+  },
+  "homepage": "http://github.com/pusher/pusher-angular",
   "engines": {
     "node": "0.10.26"
   },
