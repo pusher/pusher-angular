@@ -33,6 +33,9 @@ describe('$pusher', function () {
       bind_all: jasmine.createSpy('bind_all').and.callFake(function (callback) {
         this.global_callbacks.push(callback);
       }),
+      unbind: jasmine.createSpy('unbind').and.callFake(function (eventName) {
+        delete this.callbacks[eventName];
+      }),
       channel: function (channelName) { return this.channels[channelName]; },
       allChannels: jasmine.createSpy('allChannels').and.callFake(function () { return this.channels; }),
       subscribe: jasmine.createSpy('subscribe').and.callFake(function (channelName) {
@@ -137,6 +140,13 @@ describe('$pusher', function () {
       $p.bind('testEvent', callback);
       client.handleEvent('testEvent', payload);
       expect(callback).toHaveBeenCalledWith(payload);
+    });
+  });
+
+  describe('#unbind', function () {
+    it('should call unbind on the client', function () {
+      $p.unbind('testEvent');
+      expect(client.unbind).toHaveBeenCalled();
     });
   });
 
