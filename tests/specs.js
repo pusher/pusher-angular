@@ -33,7 +33,7 @@ describe('$pusher', function () {
       bind_all: jasmine.createSpy('bind_all').and.callFake(function (callback) {
         this.global_callbacks.push(callback);
       }),
-      unbind: jasmine.createSpy('unbind').and.callFake(function (eventName) {
+      unbind: jasmine.createSpy('unbind').and.callFake(function (eventName, callback) {
         delete this.callbacks[eventName];
       }),
       channel: function (channelName) { return this.channels[channelName]; },
@@ -145,7 +145,8 @@ describe('$pusher', function () {
 
   describe('#unbind', function () {
     it('should call unbind on the client', function () {
-      $p.unbind('testEvent');
+      var callback = function() {};
+      $p.unbind('testEvent', callback);
       expect(client.unbind).toHaveBeenCalled();
     });
   });
@@ -225,6 +226,7 @@ describe('$channel', function () {
       bind: jasmine.createSpy('bind').and.callFake(function (eventName, callback) {
         this.callbacks[eventName] = callback;
       }),
+      unbind: jasmine.createSpy('unbind'),
       bind_all: jasmine.createSpy('bind_all').and.callFake(function (callback) {
         this.global_callbacks.push(callback);
       }),
@@ -323,6 +325,14 @@ describe('$channel', function () {
       $c.bind('testEvent', callback);
       channel.handleEvent('testEvent', payload);
       expect(callback).toHaveBeenCalledWith(payload);
+    });
+  });
+
+  describe('#unbind', function () {
+    it('should call unbind on the channel', function () {
+      var callback = function() {};
+      $c.unbind('testEvent', callback);
+      expect(channel.unbind).toHaveBeenCalled();
     });
   });
 
