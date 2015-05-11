@@ -180,9 +180,9 @@ my_channel.bind('new-price',
 
 It is possible to bind to all events at either the global or channel level by using the method `bind_all`. This is used for debugging, but may have other utilities.
 
-## Unbinding from channel event
+### Unbinding from channel event
 
-Events can be unbound from channel by calling `unbind` on the bound channel. The following is an example of unbind from new comments from the channel:
+Events can be unbound from channel by calling `unbind` on the bound channel. You can unbind a callback from a given event name on a given channel using the following:
 
 ````javascript
 my_channel.unbind('new-price');
