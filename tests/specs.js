@@ -33,9 +33,7 @@ describe('$pusher', function () {
       bind_all: jasmine.createSpy('bind_all').and.callFake(function (callback) {
         this.global_callbacks.push(callback);
       }),
-      unbind: jasmine.createSpy('unbind').and.callFake(function (eventName, callback) {
-        delete this.callbacks[eventName];
-      }),
+      unbind: jasmine.createSpy('unbind'),
       channel: function (channelName) { return this.channels[channelName]; },
       allChannels: jasmine.createSpy('allChannels').and.callFake(function () { return this.channels; }),
       subscribe: jasmine.createSpy('subscribe').and.callFake(function (channelName) {
