@@ -92,6 +92,12 @@ describe('$pusher', function () {
       var channel = $p.subscribe('testChannel');
       expect(channel.name).toEqual('testChannel');
     });
+
+    it('should reuse the channel if already subscribed to', function() {
+      $p.subscribe('testChannel');
+      $p.subscribe('testChannel');
+      expect(client.subscribe.calls.count()).toBe(1);
+    })
   });
 
   describe('#unsubscribe', function () {
