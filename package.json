@@ -4,7 +4,7 @@
   "description": "Angular library for using Pusher",
   "main": "lib/pusher-angular.js",
   "scripts": {
-    "test": "karma start traivs_karma.conf.js"
+    "test": "karma start travis_karma.conf.js"
   },
   "repository": {
     "type": "git",
