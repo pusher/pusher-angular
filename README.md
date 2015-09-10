@@ -248,6 +248,11 @@ If you'd like to contribute to the library then fork it, hack away at it, improv
 
 You can make sure that your changes / improvements don't break anything by running the unit tests. To run them just run `karma start` and then you can go ahead and make changes to the library and the tests and watch the tests run again to see if they're still passing.
 
+You can generate the minimized file as following:
+
+```bash
+uglifyjs lib/pusher-angular.js -m -o lib/pusher-angular.min.js
+```
 
 ## Support
 
