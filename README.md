@@ -25,16 +25,16 @@ The first step is to make sure that you have all of the required libraries avail
 
 ````html
 <!-- AngularJS -->
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
 
 <!-- pusher-js -->
-<script src="//js.pusher.com/2.2/pusher.min.js"></script>
+<script src="//js.pusher.com/3.0/pusher.min.js"></script>
 
 <!-- pusher-angular -->
 <script src="//cdn.jsdelivr.net/angular.pusher/latest/pusher-angular.min.js"></script>
 
 <!-- pusher-angular (backup CDN)
-<script src="//cdnjs.cloudflare.com/ajax/libs/pusher-angular/0.1.4/pusher-angular.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/pusher-angular/0.1.7/pusher-angular.min.js"></script>
 -->
 ````
 
@@ -81,7 +81,7 @@ angular.module('myApp', ['pusher-angular'])
 Note that you can choose to define just one Pusher client, should you prefer, and then use that as the client throughout your Angular app. You can do this by simply instantiating a client as follows:
 
 ````javascript
-window.client = new Pusher('15d9668cc510aed91e23');
+window.client = new Pusher('API_KEY');
 ````
 
 and then instantiating instances of `$pusher` in your Angular app using the standard:
