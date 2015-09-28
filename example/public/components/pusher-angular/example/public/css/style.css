@@ -1,0 +1,67 @@
+body {
+  font-family: Helvetica, Verdana;
+  margin: 0;
+}
+
+textarea {
+  padding: 100px;
+  border: none;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  font-size: 24px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+*:focus {
+  outline: none;
+}
+
+#setup-area {
+  text-align: center;
+}
+
+#username {
+  width: 200px;
+  height: 30px;
+  font-size: 24px;
+  border: none;
+  border-bottom: 3px solid #df4e69;
+  font-weight: light;
+  margin-top: 100px;
+}
+
+.channel-number {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  font-size: 28px;
+  background-color: #df4e69;
+  color: white;
+  border: 3px solid white;
+}
+
+.channel-number:hover {
+  border: 3px solid #df4e69;
+  color: #df4e69;
+  background: white;
+  cursor: pointer;
+}
+
+.choose-text {
+  font-size: 24px;
+  margin-top: 80px;
+}
+
+.channel-chooser {
+  margin: auto;
+  margin-top: 30px;
+  width: 400px;
+  display: flex;
+  justify-content: space-between;
+}

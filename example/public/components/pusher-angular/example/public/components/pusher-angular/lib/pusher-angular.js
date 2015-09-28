@@ -2,8 +2,8 @@
 
 angular.module('pusher-angular', [])
 
-.factory('$pusher', ['$rootScope', '$channel', '$connection',
-  function ($rootScope, $channel, $connection) {
+.factory('$pusher', ['$rootScope', '$q', '$channel', '$connection',
+  function ($rootScope, $q, $channel, $connection) {
 
     function PusherAngular (pusherClient) {
       if (!(this instanceof PusherAngular)) {
@@ -25,11 +25,7 @@ angular.module('pusher-angular', [])
        * @returns {Object} channel object
        */
       subscribe: function (channelName) {
-        var channel = this.client.channel(channelName);
-        if(channel === undefined) {
-          channel = this.client.subscribe(channelName);
-        }
-        channel = $channel(channel, this);
+        var channel = $channel(this.client.subscribe(channelName), this);
         this.channels[channelName] = channel;
         return channel;
       },
@@ -74,16 +70,6 @@ angular.module('pusher-angular', [])
       },
 
       /**
-       * Unbinds from global events on the pusher client.
-       *
-       * @param {String} eventName name of the event you want to bind from
-       * @param {Function|undefined} callback callback that you want to unbind
-       */
-      unbind: function (eventName, callback) {
-        this.client.unbind(eventName, callback);
-      },
-
-      /**
        * Disconnects the pusher client.
        * {@link http://pusher.com/docs/client_api_guide/client_connect#disconnecting}
        */
@@ -125,19 +111,17 @@ angular.module('pusher-angular', [])
           throw new Error('Invalid Pusher client object');
         }
       }
-    };
+    }
 
     return PusherAngular;
   }
 ])
 
-.factory('$channel', ['$rootScope', '$members',
-  function ($rootScope, $members) {
+.factory('$channel', ['$rootScope', '$q', '$members',
+  function ($rootScope, $q, $members) {
 
-    function checkPresenceOrPrivateChannel (channelName) {
-      if (channelName.indexOf('presence-') == -1 && channelName.indexOf('private-') == -1) {
-        throw new Error('Presence or private channel required');
-      }
+    function checkPresenceChannel (channelName) {
+      if (channelName.indexOf('presence-') == -1) { throw new Error('Presence channel required'); }
     }
 
     function $channel (baseChannel, $pusherClient) {
@@ -164,21 +148,11 @@ angular.module('pusher-angular', [])
        * @param {String} eventName name of the event you want to bind to
        * @param {Function|undefined} callback callback that you want called upon the event occurring
        */
-      bind: function (eventName, callback, context) {
+      bind: function (eventName, callback) {
         this.baseChannel.bind(eventName, function (data) {
           callback(data);
           $rootScope.$digest();
-        }, context);
-      },
-
-      /**
-       * Unbinds from the given event name on the channel.
-       *
-       * @param {String} eventName name of the event you want to bind from
-       * @param {Function|undefined} callback callback that you want to unbind
-       */
-      unbind: function (eventName, callback, context) {
-        this.baseChannel.unbind(eventName, callback, context);
+        });
       },
 
       /**
@@ -203,7 +177,7 @@ angular.module('pusher-angular', [])
        * @returns {}
        */
       trigger: function (eventName, obj) {
-        checkPresenceOrPrivateChannel(this.name);
+        checkPresenceChannel(this.name);
         if (eventName.indexOf('client-') == -1) { throw new Error('Event name requires \'client-\' prefix'); }
         return this.baseChannel.trigger(eventName, obj);
       },
@@ -220,14 +194,14 @@ angular.module('pusher-angular', [])
           throw new Error('Invalid Pusher channel object');
         }
       }
-    };
+    }
 
     return $channel;
   }
 ])
 
-.factory('$members', ['$rootScope',
-  function ($rootScope) {
+.factory('$members', ['$rootScope', '$q',
+  function ($rootScope, $q) {
 
     function $members (baseMembers, baseChannel) {
       if (!(this instanceof $members)) {
@@ -301,19 +275,21 @@ angular.module('pusher-angular', [])
           throw new Error('Invalid Pusher channel members object');
         }
       }
-    };
+    }
 
     return $members;
   }
 ])
 
-.factory('$connection', ['$rootScope',
-  function ($rootScope) {
+.factory('$connection', ['$rootScope', '$q',
+  function ($rootScope, $q) {
 
     function $connection (baseConnection, baseClient) {
       if (!(this instanceof $connection)) {
         return new $connection(baseConnection, baseClient);
       }
+
+      var self = this;
 
       this._assertValidConnection(baseConnection);
       this.baseConnection = baseConnection;
@@ -327,11 +303,11 @@ angular.module('pusher-angular', [])
        * @param {String} eventName name of the event you want to bind to
        * @param {Function|undefined} callback callback that you want called upon the event occurring
        */
-      bind: function (eventName, callback, context) {
+      bind: function (eventName, callback) {
         this.baseConnection.bind(eventName, function (data) {
           callback(data);
           $rootScope.$digest();
-        }, context);
+        });
       },
 
       /**
@@ -357,8 +333,8 @@ angular.module('pusher-angular', [])
           throw new Error('Invalid Pusher connection object');
         }
       }
-    };
+    }
 
     return $connection;
   }
-]);
+])

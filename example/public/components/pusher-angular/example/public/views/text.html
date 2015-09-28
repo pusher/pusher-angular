@@ -1,0 +1,41 @@
+<textarea id="textzone" autofocus collaborate ng-keyup="sendUpdate($event)" ng-model="text"></textarea>
+
+<div class="top-bar">
+  <div class="member-info">
+    Me: {{members.me.info.username}}&nbsp; &nbsp;
+    Members ({{members.count}}):
+    <span ng-repeat="member in members.members">{{member.username}}{{$last ? '' : ', '}}</span>
+
+  </div>
+  <div class="text-info">
+
+    Words: {{words}}
+    Characters: {{characters}}
+  </div>
+</div>
+
+
+<style>
+  .text-info {
+    position: relative;
+    float: right;
+    padding-right: 50px;
+    width: 200px;
+  }
+
+  .member-info {
+    position: relative;
+    float: left;
+    padding-left: 50px;
+    width: 500px;
+  }
+
+  .top-bar {
+    position: absolute;
+    top: 0;
+    height: 50px;
+    width: 100%;
+    padding-top: 25px;
+  }
+
+</style>
