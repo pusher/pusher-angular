@@ -144,7 +144,7 @@ console.groupEnd();
 
 ## Binding to events
 
-Events can be bound to at 2 levels, the global, and per channel. They take a very similar form to the way events are handled in jQuery.
+Events can be bound to at 2 levels, the global, and per channel. They take a very similar form to the way events are handled in jQuery. Note that this is one area in which the API differs to pusher-js. In pusher-angular, a call to `bind` will return a decorated version of the callback / handler that you pass as a parameter. You will need to assign this to a variable if you wish to unbind the handler from the object in the future. This is explained in the docs for unbinding below.
 
 ### Global events
 
@@ -180,13 +180,22 @@ my_channel.bind('new-price',
 
 It is possible to bind to all events at either the global or channel level by using the method `bind_all`. This is used for debugging, but may have other utilities.
 
-### Unbinding from channel event
+### Unbind event handlers
 
-Events can be unbound from channel by calling `unbind` on the bound channel. You can unbind a callback from a given event name on a given channel using the following:
+Remove previously-bound handlers from an object. Only handlers that match all of the provided arguments (`eventName`, `handler` or `context`) are removed.
 
 ````javascript
-my_channel.unbind('new-price');
+var handler = function() { console.log('testing'); };
+var decoratedHandler = my_channel.bind('new-comment', handler);
+
+channel.unbind('new-comment', decoratedHandler); // removes just `decoratedHandler` for the `new-comment` event
+channel.unbind('new-comment'); // removes all handlers for the `new-comment` event
+channel.unbind(null, decoratedHandler); // removes `decoratedHandler` for all events
+channel.unbind(null, null, context); // removes all handlers for `context`
+channel.unbind(); // removes all handlers on `channel`
 ````
+
+The same API applies to unbinding handlers from the cliet object.
 
 ## Presence channel members
 
