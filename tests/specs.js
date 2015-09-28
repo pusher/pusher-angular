@@ -33,7 +33,11 @@ describe('$pusher', function () {
       bind_all: jasmine.createSpy('bind_all').and.callFake(function (callback) {
         this.global_callbacks.push(callback);
       }),
-      unbind: jasmine.createSpy('unbind'),
+      unbind: jasmine.createSpy('unbind').and.callFake(function (eventName, decoratedCallback) {
+        if (this.callbacks[eventName] === decoratedCallback) {
+          delete this.callbacks[eventName];
+        }
+      }),
       channel: function (channelName) { return this.channels[channelName]; },
       allChannels: jasmine.createSpy('allChannels').and.callFake(function () { return this.channels; }),
       subscribe: jasmine.createSpy('subscribe').and.callFake(function (channelName) {
@@ -153,6 +157,14 @@ describe('$pusher', function () {
       $p.unbind('testEvent', callback);
       expect(client.unbind).toHaveBeenCalled();
     });
+
+    it('should remove the passed decoratedCallback from the client', function () {
+      var callback = function() {};
+      var decoratedCallback = $p.bind('test-event', callback);
+      expect($p.client.callbacks['test-event']).toBeDefined();
+      $p.unbind('test-event', decoratedCallback);
+      expect($p.client.callbacks['test-event']).toBeUndefined();
+    });
   });
 
   describe('#bind_all', function () {
@@ -230,7 +242,11 @@ describe('$channel', function () {
       bind: jasmine.createSpy('bind').and.callFake(function (eventName, callback) {
         this.callbacks[eventName] = callback;
       }),
-      unbind: jasmine.createSpy('unbind'),
+      unbind: jasmine.createSpy('unbind').and.callFake(function (eventName, decoratedCallback) {
+        if (this.callbacks[eventName] === decoratedCallback) {
+          delete this.callbacks[eventName];
+        }
+      }),
       bind_all: jasmine.createSpy('bind_all').and.callFake(function (callback) {
         this.global_callbacks.push(callback);
       }),
@@ -337,6 +353,14 @@ describe('$channel', function () {
       var callback = function() {};
       $c.unbind('testEvent', callback);
       expect(channel.unbind).toHaveBeenCalled();
+    });
+
+    it('should remove the passed decoratedCallback from the baseChannel', function () {
+      var callback = function() {};
+      var decoratedCallback = $c.bind('test-event', callback);
+      expect($c.baseChannel.callbacks['test-event']).toBeDefined();
+      $c.unbind('test-event', decoratedCallback);
+      expect($c.baseChannel.callbacks['test-event']).toBeUndefined();
     });
   });
 
