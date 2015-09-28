@@ -1,6 +1,6 @@
 {
   "name": "pusher-angular",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Angular library for using Pusher",
   "main": "lib/pusher-angular.js",
   "scripts": {
