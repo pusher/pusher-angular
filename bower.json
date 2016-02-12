@@ -1,7 +1,7 @@
 {
   "name": "pusher-angular",
   "main": "lib/pusher-angular.js",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "homepage": "https://github.com/pusher/pusher-angular",
   "authors": [
     "Hamilton Chapman <hamilton@pusher.com>"
