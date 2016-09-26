@@ -195,7 +195,7 @@ channel.unbind(null, null, context); // removes all handlers for `context`
 channel.unbind(); // removes all handlers on `channel`
 ````
 
-The same API applies to unbinding handlers from the cliet object.
+The same API applies to unbinding handlers from the client object.
 
 ## Presence channel members
 
