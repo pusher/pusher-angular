@@ -31,7 +31,7 @@ The first step is to make sure that you have all of the required libraries avail
 <script src="//js.pusher.com/3.0/pusher.min.js"></script>
 
 <!-- pusher-angular -->
-<script src="//cdn.jsdelivr.net/angular.pusher/latest/pusher-angular.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/pusher-angular@latest/lib/pusher-angular.min.js"></script>
 
 <!-- pusher-angular (backup CDN)
 <script src="//cdnjs.cloudflare.com/ajax/libs/pusher-angular/0.1.7/pusher-angular.min.js"></script>
