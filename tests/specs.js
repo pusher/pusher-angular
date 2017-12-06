@@ -20,7 +20,7 @@ describe('$pusher', function () {
 
     function FakePusherClient(apiKey) {
       this.apiKey = apiKey;
-      this.connection = { bind_all: jasmine.createSpy('bind_all') };
+      this.connection = { bind_global: jasmine.createSpy('bind_global') };
       this.channels = {};
       this.callbacks = {};
       this.global_callbacks = [];
@@ -30,7 +30,7 @@ describe('$pusher', function () {
       bind: jasmine.createSpy('bind').and.callFake(function (eventName, callback) {
         this.callbacks[eventName] = callback;
       }),
-      bind_all: jasmine.createSpy('bind_all').and.callFake(function (callback) {
+      bind_global: jasmine.createSpy('bind_global').and.callFake(function (callback) {
         this.global_callbacks.push(callback);
       }),
       unbind: jasmine.createSpy('unbind').and.callFake(function (eventName, decoratedCallback) {
@@ -167,17 +167,17 @@ describe('$pusher', function () {
     });
   });
 
-  describe('#bind_all', function () {
-    it('should call bind_all on the base client', function () {
+  describe('#bind_global', function () {
+    it('should call bind_global on the base client', function () {
       var callback = function () {};
-      $p.bind_all(callback);
-      expect(client.bind_all).toHaveBeenCalled();
+      $p.bind_global(callback);
+      expect(client.bind_global).toHaveBeenCalled();
     });
 
     it('should setup the callback so that it is called appropriately', function () {
       var callback = jasmine.createSpy('callback');
       var payload = { data: { message: 'test message' }, eventName: 'testMessage' };
-      $p.bind_all(callback);
+      $p.bind_global(callback);
       $p.client.handleGlobalEvent(payload);
       expect(callback).toHaveBeenCalledWith(payload.eventName, payload.data);
     });
@@ -247,7 +247,7 @@ describe('$channel', function () {
           delete this.callbacks[eventName];
         }
       }),
-      bind_all: jasmine.createSpy('bind_all').and.callFake(function (callback) {
+      bind_global: jasmine.createSpy('bind_global').and.callFake(function (callback) {
         this.global_callbacks.push(callback);
       }),
       trigger: jasmine.createSpy('trigger'),
@@ -261,7 +261,7 @@ describe('$channel', function () {
 
     function FakePusherClient(apiKey) {
       this.apiKey = apiKey;
-      this.connection = { bind_all: jasmine.createSpy('bind_all') };
+      this.connection = { bind_global: jasmine.createSpy('bind_global') };
       this.channels = {};
     }
 
@@ -364,17 +364,17 @@ describe('$channel', function () {
     });
   });
 
-  describe('#bind_all', function () {
-    it('should call bind_all on the base connection', function () {
+  describe('#bind_global', function () {
+    it('should call bind_global on the base connection', function () {
       var callback = function () {};
-      $c.bind_all(callback);
-      expect(channel.bind_all).toHaveBeenCalled();
+      $c.bind_global(callback);
+      expect(channel.bind_global).toHaveBeenCalled();
     });
 
     it('should setup the callback so that it is called appropriately', function () {
       var callback = jasmine.createSpy('callback');
       var payload = { data: { members: { user_id: 1 } }, eventName: 'pusher:subscription_succeeded' };
-      $c.bind_all(callback);
+      $c.bind_global(callback);
       $c.baseChannel.handleGlobalEvent(payload);
       expect(callback).toHaveBeenCalledWith(payload.eventName, payload.data);
     });
@@ -449,7 +449,7 @@ describe('$members', function () {
 
     function FakePusherClient(apiKey) {
       this.apiKey = apiKey;
-      this.connection = { bind_all: jasmine.createSpy('bind_all') };
+      this.connection = { bind_global: jasmine.createSpy('bind_global') };
       this.channels = {};
     }
 
@@ -618,7 +618,7 @@ describe('$channel', function () {
       bind: jasmine.createSpy('bind').and.callFake(function (eventName, callback) {
         this.callbacks[eventName] = callback;
       }),
-      bind_all: jasmine.createSpy('bind_all').and.callFake(function (callback) {
+      bind_global: jasmine.createSpy('bind_global').and.callFake(function (callback) {
         this.global_callbacks.push(callback);
       }),
       handleEvent: function (eventName, data) {
@@ -721,17 +721,17 @@ describe('$channel', function () {
     });
   });
 
-  describe('#bind_all', function () {
-    it('should call bind_all on the base connection', function () {
+  describe('#bind_global', function () {
+    it('should call bind_global on the base connection', function () {
       var callback = function () {};
-      $conn.bind_all(callback);
-      expect(connection.bind_all).toHaveBeenCalled();
+      $conn.bind_global(callback);
+      expect(connection.bind_global).toHaveBeenCalled();
     });
 
     it('should setup the callback so that it is called appropriately', function () {
       var callback = jasmine.createSpy('callback');
       var payload = { data: { message: 'test message' }, eventName: 'pusher:connected' };
-      $conn.bind_all(callback);
+      $conn.bind_global(callback);
       $conn.baseConnection.handleGlobalEvent(payload);
       expect(callback).toHaveBeenCalledWith(payload.eventName, payload.data);
     });
