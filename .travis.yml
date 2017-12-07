@@ -6,9 +6,7 @@ before_install:
   - "sh -e /etc/init.d/xvfb start"
   - sleep 3
 install:
-  - npm install
-  - npm install -g bower
-  - bower install
+  - yarn install
 script:
   - karma start karma.conf.js
 after_script:
