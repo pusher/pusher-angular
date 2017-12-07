@@ -20,7 +20,8 @@
     "tests",
     "karma.conf.js",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "example"
   ],
   "devDependencies": {
     "angular-mocks": "latest"
