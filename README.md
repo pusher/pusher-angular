@@ -1,9 +1,11 @@
-# Pusher Angular Library
+# Pusher AngularJS Library
 
 [![Build Status](https://travis-ci.org/pusher/pusher-angular.svg?branch=master)](https://travis-ci.org/pusher/pusher-angular)
 [![Coverage Status](https://img.shields.io/coveralls/pusher/pusher-angular.svg)](https://coveralls.io/r/pusher/pusher-angular?branch=master)
 
 This library is an open source client that allows you to connect to [Pusher](http://pusher.com/). It keeps largely the same API as the [pusher-js library](http://github.com/pusher/pusher-js/), with a few differences.
+
+Currently only AngularJS (version 1.x) is supported.
 
 ## Usage overview
 
@@ -44,7 +46,7 @@ If you'd like you can use Bower to install pusher-angular using the following co
 bower install pusher-angular --save
 ````
 
-With that in place, to start using the Angular library you first need to create a Pusher client in exactly the same way that you create one using the [pusher-js library](http://github.com/pusher/pusher-js/), which is as follows:
+With that in place, to start using the `pusher-angular` you first need to create a Pusher client in exactly the same way that you create one using the [pusher-js library](http://github.com/pusher/pusher-js/), which is as follows:
 
 ````javascript
 var pusher = new Pusher(API_KEY);
@@ -60,7 +62,7 @@ var pusher = new Pusher(API_KEY, {
 
 This is all documented in full [here](http://github.com/pusher/pusher-js/).
 
-When you've created a Pusher client you then need to pass that client to a `$pusher` object inside your Angular controller, service, etc:
+When you've created a Pusher client you then need to pass that client to a `$pusher` object inside your AngularJS controller, service, etc:
 
 ````javascript
 angular.module('myApp').controller('MyController', ['$scope', '$pusher',
@@ -70,7 +72,7 @@ angular.module('myApp').controller('MyController', ['$scope', '$pusher',
 }]);
 ````
 
-You can also see here that you need to inject the `$pusher` service into any controllers, services, etc where you'd like to use Pusher in an Angular context.
+You can also see here that you need to inject the `$pusher` service into any controllers, services, etc where you'd like to use Pusher in an AngularJS context.
 
 To make the `$pusher` service available to be used throughout your app you need to ensure that the `pusher-angular` module is included in your app. You do this by having the following in your app:
 
@@ -78,21 +80,21 @@ To make the `$pusher` service available to be used throughout your app you need 
 angular.module('myApp', ['pusher-angular'])
 ````
 
-Note that you can choose to define just one Pusher client, should you prefer, and then use that as the client throughout your Angular app. You can do this by simply instantiating a client as follows:
+Note that you can choose to define just one Pusher client, should you prefer, and then use that as the client throughout your AngularJS app. You can do this by simply instantiating a client as follows:
 
 ````javascript
 window.client = new Pusher('API_KEY');
 ````
 
-and then instantiating instances of `$pusher` in your Angular app using the standard:
+and then instantiating instances of `$pusher` in your AngularJS app using the standard:
 
 ````javascript
 var pusher = $pusher(client);
 ````
 
-Make sure that you define client before then referencing it in your Angular app though.
+Make sure that you define client before then referencing it in your AngularJS app though.
 
-This is all of the setup required to have Pusher available in your Angular app. The content below will explain how you can utilise Pusher in an Angular app.
+This is all of the setup required to have Pusher available in your AngularJS app. The content below will explain how you can utilise Pusher in an AngularJS app.
 
 
 
