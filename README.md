@@ -12,7 +12,8 @@ Currently only AngularJS (version 1.x) is supported.
 The following topics are covered:
 
 * Initialisation
-* Subscribing to channels (public, private, and presence)
+* Subscribing to channels (public, private, encrypted and presence)
+* Accessing Channels
 * Binding to events
     * Globally
     * Per-channel
@@ -27,10 +28,10 @@ The first step is to make sure that you have all of the required libraries avail
 
 ````html
 <!-- AngularJS -->
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.14/angular.min.js"></script>
 
 <!-- pusher-js -->
-<script src="//js.pusher.com/3.0/pusher.min.js"></script>
+<script src="//js.pusher.com/4.3/pusher.min.js"></script>
 
 <!-- pusher-angular -->
 <script src="//cdn.jsdelivr.net/npm/pusher-angular@latest/lib/pusher-angular.min.js"></script>
@@ -143,6 +144,30 @@ for (var i = 0; i < channels.length; i++) {
 }
 console.groupEnd();
 ````
+
+### Encrypted Channels (BETA)
+
+Like private channels, encrypted channels have their own namespace, 'private-encrypted-'. For more information about encrypted channels, please see the [docs](https://pusher.com/docs/client_api_guide/client_encrypted_channels).
+
+```js
+var my_private_encrypted_channel = pusher.subscribe('private-encrypted-my-channel');
+```
+
+## Accessing Channels
+
+It is possible to access channels by name, through the `channel` function:
+
+```js
+var my_private_encrypted_channel = pusher.channel('private-my-channel');
+```
+
+It is possible to access all subscribed channels through the `allChannels` function:
+
+```js
+pusher.allChannels().forEach(channel => console.log(channel.name));
+```
+
+Private, presence and encrypted channels will make a request to your `authEndpoint` (`/pusher/auth`) by default, where you will have to [authenticate the subscription](https://pusher.com/docs/authenticating_users). You will have to send back the correct auth response and a 200 status code.
 
 ## Binding to events
 
