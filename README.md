@@ -1,9 +1,9 @@
-# Pusher AngularJS Library
+# Pusher Channels AngularJS Library
 
 [![Build Status](https://travis-ci.org/pusher/pusher-angular.svg?branch=master)](https://travis-ci.org/pusher/pusher-angular)
 [![Coverage Status](https://img.shields.io/coveralls/pusher/pusher-angular.svg)](https://coveralls.io/r/pusher/pusher-angular?branch=master)
 
-This library is an open source client that allows you to connect to [Pusher](http://pusher.com/). It keeps largely the same API as the [pusher-js library](http://github.com/pusher/pusher-js/), with a few differences.
+This library is an open source client that allows you to connect to [Pusher Channels](http://pusher.com/channels). It keeps largely the same API as the [pusher-js library](http://github.com/pusher/pusher-js/), with a few differences.
 
 Currently only AngularJS (version 1.x) is supported.
 
@@ -47,13 +47,13 @@ If you'd like you can use Bower to install pusher-angular using the following co
 bower install pusher-angular --save
 ````
 
-With that in place, to start using the `pusher-angular` you first need to create a Pusher client in exactly the same way that you create one using the [pusher-js library](http://github.com/pusher/pusher-js/), which is as follows:
+With that in place, to start using the AngularJS library you first need to create a `Pusher` client in exactly the same way that you create one using the [pusher-js library](http://github.com/pusher/pusher-js/), which is as follows:
 
 ````javascript
 var pusher = new Pusher(API_KEY);
 ````
 
-There are a number of configuration parameters which can be set for the Pusher client, which can be passed as an object to the Pusher constructor, i.e.:
+There are a number of configuration parameters which can be set for the `Pusher` client, which can be passed as an object to the constructor, i.e.:
 
 ````javascript
 var pusher = new Pusher(API_KEY, {
@@ -63,7 +63,7 @@ var pusher = new Pusher(API_KEY, {
 
 This is all documented in full [here](http://github.com/pusher/pusher-js/).
 
-When you've created a Pusher client you then need to pass that client to a `$pusher` object inside your AngularJS controller, service, etc:
+When you've created a `Pusher` client you then need to pass that client to a `$pusher` object inside your AngularJS controller, service, etc:
 
 ````javascript
 angular.module('myApp').controller('MyController', ['$scope', '$pusher',
@@ -73,7 +73,7 @@ angular.module('myApp').controller('MyController', ['$scope', '$pusher',
 }]);
 ````
 
-You can also see here that you need to inject the `$pusher` service into any controllers, services, etc where you'd like to use Pusher in an AngularJS context.
+You can also see here that you need to inject the `$pusher` service into any controllers, services, etc where you'd like to use Channels in an AngularJS context.
 
 To make the `$pusher` service available to be used throughout your app you need to ensure that the `pusher-angular` module is included in your app. You do this by having the following in your app:
 
@@ -81,7 +81,7 @@ To make the `$pusher` service available to be used throughout your app you need 
 angular.module('myApp', ['pusher-angular'])
 ````
 
-Note that you can choose to define just one Pusher client, should you prefer, and then use that as the client throughout your AngularJS app. You can do this by simply instantiating a client as follows:
+Note that you can choose to define just one `Pusher` client, should you prefer, and then use that as the client throughout your AngularJS app. You can do this by simply instantiating a client as follows:
 
 ````javascript
 window.client = new Pusher('API_KEY');
@@ -95,9 +95,7 @@ var pusher = $pusher(client);
 
 Make sure that you define client before then referencing it in your AngularJS app though.
 
-This is all of the setup required to have Pusher available in your AngularJS app. The content below will explain how you can utilise Pusher in an AngularJS app.
-
-
+This is all of the setup required to have Channels available in your AngularJS app. The content below will explain how you can utilise Channels in an AngularJS app.
 
 ## Subscribing to channels
 
@@ -137,7 +135,7 @@ It is possible to access all subscribed channels through the `allChannels` funct
 
 ````javascript
 var channels = pusher.allChannels();
-console.group('Pusher - subscribed to:');
+console.group('Channels - subscribed to:');
 for (var i = 0; i < channels.length; i++) {
     var channel = channels[i];
     console.log(channel.name);
@@ -226,7 +224,7 @@ The same API applies to unbinding handlers from the client object.
 
 ## Presence channel members
 
-All presence channels have a members object that contains information about all of the members in the channel. More specific information can be found in the [Pusher docs](http://pusher.com/docs/client_api_guide/client_presence_channels#channel_members).
+All presence channels have a members object that contains information about all of the members in the channel. More specific information can be found in the [Channels docs](https://pusher.com/docs/channels/using_channels/presence-channels#channel_members).
 
 In this library the `members` object is setup to automatically reflect changes in members of the channel. That means if you had the following code in a controller:
 
@@ -292,4 +290,4 @@ uglifyjs lib/pusher-angular.js -m -o lib/pusher-angular.min.js
 
 ## Support
 
-If you have questions that aren't answered here or in the code's inline documentation then feel free to email [hamilton@pusher.com](mailto:hamilton@pusher.com) or get in touch with [Pusher support](http://pusher.com/about/contact).
+If you have questions that aren't answered here or in the code's inline documentation then feel free to create an issue describing your problem.
