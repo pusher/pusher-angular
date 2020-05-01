@@ -19,6 +19,12 @@
     "body-parser": "^1.9.0",
     "ejs": "^1.0.0",
     "express": "^4.9.5",
-    "pusher": "^1.0.1"
-  }
+    "pusher": "^1.0.1",
+    "snyk": "^1.316.1"
+  },
+  "scripts": {
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
+  },
+  "snyk": true
 }
