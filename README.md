@@ -1,3 +1,7 @@
+This library is no longer supported
+
+
+
 # Pusher Channels AngularJS Library
 
 [![Build Status](https://travis-ci.org/pusher/pusher-angular.svg?branch=master)](https://travis-ci.org/pusher/pusher-angular)
